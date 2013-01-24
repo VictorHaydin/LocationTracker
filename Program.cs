@@ -9,11 +9,16 @@ namespace LocationTracker
     {
         static void Main(string[] args)
         {
+            var storageLocation = @"d:\test.log";
+            if (args.Length > 0)
+            {
+                storageLocation = args[0];
+            }
             var start = DateTime.Now;
             int cnt = 0;
             var disruptor = new Disruptor.Dsl.Disruptor<TrackedObject>(() => new TrackedObject(), 1 << 10, TaskScheduler.Default);
 
-            using (var persistHandler = new ObjectPersistHandler(@"d:\test.log"))
+            using (var persistHandler = new ObjectPersistHandler(storageLocation))
             {
                 var distanceHandler = new DistanceHandler();
                 disruptor.HandleEventsWith(persistHandler).Then(new ConsoleLogHandler()).Then(distanceHandler);
