@@ -41,7 +41,9 @@ namespace LocationTracker
             var consoleLogHandler = new ConsoleLogHandler();
             using (var persistHandler = new ObjectPersistHandler(storageLocation))
             {
-                disruptor.HandleEventsWith(persistHandler).Then(consoleLogHandler, distanceHandler).Then(aknowledgementHandler);
+                disruptor.HandleEventsWith(persistHandler)
+                         .Then(consoleLogHandler, distanceHandler)
+                         .Then(aknowledgementHandler);
                 
                 var ringBuffer = disruptor.Start();
                 publisher = new EventPublisher<TrackedObject>(ringBuffer);

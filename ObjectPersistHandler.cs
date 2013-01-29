@@ -39,7 +39,6 @@ namespace LocationTracker
 
         public void Dispose()
         {
-            _writer.Flush();
             _writer.Dispose();
         }
     }
