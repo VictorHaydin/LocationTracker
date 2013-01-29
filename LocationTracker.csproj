@@ -32,13 +32,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Atomic">
+    <Reference Include="Atomic, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\Disruptor.1.1.0\lib\net40\Atomic.dll</HintPath>
     </Reference>
-    <Reference Include="Disruptor">
+    <Reference Include="Disruptor, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\Disruptor.1.1.0\lib\net40\Disruptor.dll</HintPath>
     </Reference>
-    <Reference Include="Disruptor.Scheduler">
+    <Reference Include="Disruptor.Scheduler, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\Disruptor.1.1.0\lib\net40\Disruptor.Scheduler.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -54,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AknowledgementHandler.cs" />
     <Compile Include="DistanceHandler.cs" />
     <Compile Include="ObjectPersistHandler.cs" />
     <Compile Include="ConsoleLogHandler.cs" />

@@ -21,7 +21,10 @@ namespace LocationTracker
         public void OnNext(TrackedObject data, long sequence, bool endOfBatch)
         {
             AppendData(data);
-            _writer.Flush();
+            if (endOfBatch)
+            {
+                _writer.Flush();
+            }
         }
 
         private void AppendData(TrackedObject data)
@@ -36,6 +39,7 @@ namespace LocationTracker
 
         public void Dispose()
         {
+            _writer.Flush();
             _writer.Dispose();
         }
     }

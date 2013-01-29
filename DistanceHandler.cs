@@ -11,6 +11,7 @@ namespace LocationTracker
     public class DistanceHandler : IEventHandler<TrackedObject>
     {
         private readonly Dictionary<Guid, Tuple<double, double, double>> _registry = new Dictionary<Guid, Tuple<double, double, double>>(); // lat, long, dist
+        private double _totalDistance = 0;
 
         public void OnNext(TrackedObject data, long sequence, bool endOfBatch)
         {
@@ -19,6 +20,7 @@ namespace LocationTracker
             {
                 var distance = old.Item3 + GetDistance(data.Latitude, data.Longitude, old.Item1, old.Item2);
                 _registry[data.Id] = new Tuple<double, double, double>(data.Latitude, data.Longitude, distance);
+                _totalDistance += distance;
             }
             else
             {
@@ -53,6 +55,7 @@ namespace LocationTracker
                 builder.AppendFormat("{0}: {1}", tuple.Key, tuple.Value.Item3);
                 builder.AppendLine();
             }
+            builder.AppendFormat("Total distance travelled: {0}", _totalDistance);
             return builder.ToString();
         }
     }
